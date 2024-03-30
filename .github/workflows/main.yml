@@ -21,7 +21,7 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker image build . --file ../backstage-poc/packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
+            docker image build . --file backstage-poc/packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
             
         - name: 'Push image to App Service'
