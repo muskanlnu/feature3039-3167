@@ -16,7 +16,6 @@ jobs:
 
       - name: yarn build+install
         run: |
-          cd backstage-poc
           yarn install --frozen-lockfile
           yarn tsc
           yarn build:backend
