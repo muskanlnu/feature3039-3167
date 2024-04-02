@@ -14,9 +14,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Install yarn
-        run: yarn install -g
-
       - name: yarn build+install
         run: |
           cd backstage-poc
@@ -31,7 +28,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker image build . --file backstage-poc/packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
+          docker image build . --file packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}
 
       - name: "Push image to App Service"
